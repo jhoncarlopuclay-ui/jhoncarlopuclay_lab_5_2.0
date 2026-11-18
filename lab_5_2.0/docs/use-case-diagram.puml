@@ -1,0 +1,74 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam usecase {
+  BackgroundColor #F7F5FF
+  BorderColor #7058E8
+  ArrowColor #77738D
+}
+actor Scholar
+actor "Scholarship Staff" as Staff
+actor "Scholarship Coordinator" as Coordinator
+actor "Scholarship Committee" as Committee
+actor Registrar
+actor "System Administrator" as Admin
+rectangle "Student Scholarship Monitoring and Academic Compliance System" {
+  usecase "Login" as UC01
+  usecase "Register Scholar" as UC02
+  usecase "Assign Scholarship" as UC03
+  usecase "Configure Scholarship\nRequirements" as UC04
+  usecase "View Requirements" as UC05
+  usecase "Submit Grades" as UC06
+  usecase "Validate Submission" as UC18
+  usecase "Verify Grade\nSubmission" as UC07
+  usecase "Evaluate Academic\nCompliance" as UC08
+  usecase "Record Deficiency" as UC09
+  usecase "View Deficiency" as UC10
+  usecase "Update Scholar Status" as UC11
+  usecase "Process Scholarship\nRenewal" as UC12
+  usecase "Search Scholar" as UC13
+  usecase "Filter Scholars" as UC14
+  usecase "Generate Compliance\nReport" as UC15
+  usecase "View Dashboard" as UC16
+  usecase "Logout" as UC17
+  usecase "Refer Exception" as UC19
+  usecase "Notify Scholar" as UC20
+}
+Scholar -- UC01
+Scholar -- UC05
+Scholar -- UC06
+Scholar -- UC10
+Scholar -- UC17
+Staff -- UC01
+Staff -- UC02
+Staff -- UC03
+Staff -- UC05
+Staff -- UC06
+Staff -- UC07
+Staff -- UC09
+Staff -- UC10
+Staff -- UC13
+Staff -- UC14
+Staff -- UC16
+Staff -- UC17
+Coordinator -- UC01
+Coordinator -- UC04
+Coordinator -- UC08
+Coordinator -- UC11
+Coordinator -- UC12
+Coordinator -- UC15
+Coordinator -- UC16
+Coordinator -- UC17
+Committee -- UC12
+Registrar -- UC07
+Admin -- UC01
+Admin -- UC17
+Admin -- UC13
+UC06 ..> UC18 : <<include>>
+UC07 ..> UC08 : <<include>>
+UC08 ..> UC11 : <<include>>
+UC08 ..> UC09 : <<extend>>\n[requirements fail]
+UC12 ..> UC19 : <<extend>>\n[exception needs review]
+UC09 ..> UC20 : <<include>>
+@enduml
